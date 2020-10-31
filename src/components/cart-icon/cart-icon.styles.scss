@@ -1,6 +1,6 @@
 .cart-icon {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   position: relative;
   display: flex;
   align-items: center;
@@ -14,8 +14,10 @@
 
   .item-count {
     position: absolute;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: bold;
     bottom: 12px;
+    color: #FF611C;
   }
 }
+
