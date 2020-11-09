@@ -18,8 +18,15 @@
     }
 
     & .content {
-      opacity: 0.9;
+      opacity: 0.85;
+      color: white;
+      background-color: #FF611C;
+
+      .title{
+        color: white;
+      }
     }
+
   }
   
 
