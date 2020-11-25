@@ -11,9 +11,11 @@ const config = {
     messagingSenderId: "587121405549",
     appId: "1:587121405549:web:10b06671b58071acfdd964",
     measurementId: "G-KLVH56GG4N"
-  }
+}
 
-  export const createUserProfileDocument = async (userAuth , additionalData) => {
+firebase.initializeApp(config);
+
+export const createUserProfileDocument = async (userAuth , additionalData) => {
     if(!userAuth) return;
 
     const userRef = firestore.doc(`users/${userAuth.uid}`)
@@ -30,16 +32,50 @@ const config = {
                 email,
                 createdAt,
                 ...additionalData
-             })
+            })
         } catch (error) {
             console.log("error creating user", error.message);
         }
-    }
-
-    return userRef;
 }
 
-  firebase.initializeApp(config);
+    return userRef;
+};
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+    const transformedCollections = collections.docs.map(doc => {
+        const { title, items } = doc.data();
+
+        return {
+            routeName: encodeURI(title.toLowerCase()),
+            id: doc.id,
+            title,
+            items  
+        }
+    });
+
+    //we need to output the array to an object for our reducer, the titles of the collections are the keys for the corresponding collection
+    return transformedCollections.reduce( (accumulator, collection) => {
+        accumulator[collection.title.toLowerCase()] = collection;
+        return accumulator;
+    } , {});
+}
+
+
+    /* added SHOP_ITEMS from shop.data.js to firebase, ***ran only once*** to add the data that we need */
+
+    // export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+    //     const collectionRef = firestore.collection(collectionKey);
+
+    //     const batch = firestore.batch();
+
+    //     objectsToAdd.forEach(obj => {
+    //         const newDocRef = collectionRef.doc();
+    //         batch.set(newDocRef, obj);
+    //     });
+
+    //     return await batch.commit();
+    // }
+
 
   export const auth = firebase.auth();
   export const firestore = firebase.firestore();

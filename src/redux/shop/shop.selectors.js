@@ -9,10 +9,10 @@ export const selectCollections = createSelector(
 
 export const selectCollectionsForPreview = createSelector( //Turning the collections object to an array so we can iterate over the array in "ShopPage" and show the collections
     [selectCollections],
-    collections => Object.keys(collections).map(key => collections[key])
+    collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 )
 
 export const selectCollection = collectionUrlParam => createSelector(
     [selectCollections],
-    collections => collections[collectionUrlParam]
+    collections => (collections ? collections[collectionUrlParam] : null)
 );
