@@ -1,7 +1,9 @@
 import React from "react";
 
+//Components
 import CollectionPreview from "../collection-preview/collection-preview.component";
 
+//Redux
 import { connect } from "react-redux";
 import { selectCollectionsForPreview } from "../../redux/shop/shop.selectors";
 import { createStructuredSelector } from "reselect";
