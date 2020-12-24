@@ -1,49 +1,40 @@
-import React from "react";
-import { Route } from "react-router-dom";
+import React from 'react';
+import { Route } from 'react-router-dom';
 
-import { createStructuredSelector } from "reselect";
+// import { createStructuredSelector } from "reselect"; /* using containers */
 
 // import CollectionsOverview from "../../components/collections-overview/collections-overview.component"; /* We are using CollectionsOverviewContainer instead of CollectionsOverviewWithSpinner, so we can encapsulate the isLoadingProperty for the correct component
-import CollectionsOverviewContainer from "../../components/collections-overview/collections-overview.container";
-import CollectionPage from "../collection/collection.component";
+import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
+// import CollectionPage from "../collection/collection.component"; /* We are using CollectionsPageContainer instead of CollectionPageWithSpinner, so we can encapsulate the isLoadingProperty for the correct component
+import CollectionPageContainer from '../collection/collection.container';
 
-import WithSpinner from "../../components/with-spinner/with-spinner.component";
+import { connect } from 'react-redux';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 
-import { connect } from "react-redux";
-import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
-
-import { selectIsCollectionFetching, selectIsCollectionsLoaded } from "../../redux/shop/shop.selectors";
-
-//const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview); /* We are using CollectionsOverviewContainer instead of CollectionsOverviewWithSpinner, so we can encapsulate the isLoadingProperty for the correct component
-const CollectionPageWithSpinner = WithSpinner(CollectionPage);
-
+// import WithSpinner from "../../components/with-spinner/with-spinner.component";
+// const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview); /* We are using CollectionsOverviewContainer instead of CollectionsOverviewWithSpinner, so we can encapsulate the isLoadingProperty for the correct component
+// const CollectionPageWithSpinner = WithSpinner(CollectionPage); /* We are using CollectionPageContainer instead of CollectionsPageWithSpinner, so we can encapsulate the isLoadingProperty for the correct component
 
 class ShopPage extends React.Component {
+	componentDidMount() {
+		const { fetchCollectionsStart } = this.props;
+		fetchCollectionsStart();
+	}
 
-    componentDidMount() {
-        const { fetchCollectionsStartAsync } = this.props;
-        fetchCollectionsStartAsync();
-    }
+	render() {
+		const { match } = this.props;
 
-    render () {
-
-        const { match, isCollectionsLoaded } = this.props;
-
-        return (
-            <div className="shop-page">
-            <Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
-            <Route path={`${match.path}/:collectionId`} render={ (props) => <CollectionPageWithSpinner isLoading={!isCollectionsLoaded} {...props} /> } />
-            </div>
-        )
-    }
+		return (
+			<div className="shop-page">
+				<Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
+				<Route path={`${match.path}/:collectionId`} component={CollectionPageContainer} />
+			</div>
+		);
+	}
 } //we transfer match, location and history from App.js when calling to this component (using react-router-dom)
 
-const mapStateToProps = createStructuredSelector({
-    isCollectionsLoaded: selectIsCollectionsLoaded
+const mapDispatchToProps = (dispatch) => ({
+	fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 });
 
-const mapDispatchToProps = dispatch => ({
-    fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
+export default connect(null, mapDispatchToProps)(ShopPage);

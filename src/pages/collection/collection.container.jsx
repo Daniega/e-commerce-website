@@ -4,19 +4,19 @@ import { compose } from "redux"; //compose helps us to leverage High order compo
 
 import { selectIsCollectionsLoaded } from "../../redux/shop/shop.selectors";
 
-import WithSpinner from "../with-spinner/with-spinner.component";
+import WithSpinner from "../../components/with-spinner/with-spinner.component";
 import CollectionPage from "../../pages/collection/collection.component";
 
 const mapStateToProps = createStructuredSelector({
-    isLoading: selectIsCollectionsLoaded
+    isLoading: (state) => !selectIsCollectionsLoaded(state)
 });
 
 //exporting the regular way 
 // export const CollectionsOverviewContainer = connect(mapStateToProps)(WithSpinner(CollectionsOverview))
 
-const CollectionsPageContainer = compose(
+const CollectionPageContainer = compose(
     connect(mapStateToProps),
     WithSpinner
 )(CollectionPage);
 
-export default CollectionsPageContainer;
+export default CollectionPageContainer;
