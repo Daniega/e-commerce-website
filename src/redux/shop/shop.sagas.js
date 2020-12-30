@@ -1,5 +1,5 @@
 //redux saga will listen to any Action of a specific type that we pass
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import ShopActionTypes from './shop.types';
 
@@ -20,4 +20,10 @@ export function* fetchCollectionsAsync() {
 
 export function* fetchCollectionsStart() {
 	yield takeLatest(ShopActionTypes.FETCH_COLLECTIONS_START, fetchCollectionsAsync);
+}
+
+export function* shopSagas() {
+	yield all([
+		call(fetchCollectionsStart)
+	]);
 }

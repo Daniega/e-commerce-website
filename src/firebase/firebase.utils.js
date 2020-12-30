@@ -60,6 +60,15 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 	}, {});
 };
 
+export const getCurrentUser = () => {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+			unsubscribe();
+			resolve(userAuth);
+		}, reject);
+	});
+};
+
 /* added SHOP_ITEMS from shop.data.js to firebase, ***ran only once*** to add the data that we need */
 
 // export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
