@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 
 // import { createStructuredSelector } from "reselect"; /* using containers */
@@ -15,26 +15,24 @@ import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 // const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview); /* We are using CollectionsOverviewContainer instead of CollectionsOverviewWithSpinner, so we can encapsulate the isLoadingProperty for the correct component
 // const CollectionPageWithSpinner = WithSpinner(CollectionPage); /* We are using CollectionPageContainer instead of CollectionsPageWithSpinner, so we can encapsulate the isLoadingProperty for the correct component
 
-class ShopPage extends React.Component {
-	componentDidMount() {
-		const { fetchCollectionsStart } = this.props;
-		fetchCollectionsStart();
-	}
+const ShopPage = ({ fetchCollectionsStart, match }) => {
+	useEffect(
+		() => {
+			fetchCollectionsStart();
+		},
+		[ fetchCollectionsStart ]
+	);
 
-	render() {
-		const { match } = this.props;
-
-		return (
-			<div className="shop-page">
-				<Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
-				<Route path={`${match.path}/:collectionId`} component={CollectionPageContainer} />
-			</div>
-		);
-	}
-} //we transfer match, location and history from App.js when calling to this component (using react-router-dom)
+	return (
+		<div className="shop-page">
+			<Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
+			<Route path={`${match.path}/:collectionId`} component={CollectionPageContainer} />
+		</div>
+	);
+}; //we transfer match, location and history from App.js when calling to this component (using react-router-dom)
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+	fetchCollectionsStart : () => dispatch(fetchCollectionsStart())
 });
 
 export default connect(null, mapDispatchToProps)(ShopPage);

@@ -2,7 +2,7 @@ body {
 	font-family: 'Open Sans Condensed', sans-serif;
 	padding: 20px 60px;
 	font-weight: bolder;
-	background: linear-gradient(-45deg, #ffc3b0, #ffc48d, #c1efff, #a2e2ff);
+	background: linear-gradient(-45deg, #ffe8e1, #ffe2c7, #c1efff, #a2e2ff);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 }
