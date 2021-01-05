@@ -3,14 +3,14 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-	apiKey: 'AIzaSyAbd5gqIEbpd2fdeQtkDVrLN-UtPP5OAIM',
-	authDomain: 'e-commerce-db-90730.firebaseapp.com',
-	databaseURL: 'https://e-commerce-db-90730.firebaseio.com',
-	projectId: 'e-commerce-db-90730',
-	storageBucket: 'e-commerce-db-90730.appspot.com',
-	messagingSenderId: '587121405549',
-	appId: '1:587121405549:web:10b06671b58071acfdd964',
-	measurementId: 'G-KLVH56GG4N'
+	apiKey            : 'AIzaSyAbd5gqIEbpd2fdeQtkDVrLN-UtPP5OAIM',
+	authDomain        : 'e-commerce-db-90730.firebaseapp.com',
+	databaseURL       : 'https://e-commerce-db-90730.firebaseio.com',
+	projectId         : 'e-commerce-db-90730',
+	storageBucket     : 'e-commerce-db-90730.appspot.com',
+	messagingSenderId : '587121405549',
+	appId             : '1:587121405549:web:10b06671b58071acfdd964',
+	measurementId     : 'G-KLVH56GG4N'
 };
 
 firebase.initializeApp(config);
@@ -46,8 +46,8 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 		const { title, items } = doc.data();
 
 		return {
-			routeName: encodeURI(title.toLowerCase()),
-			id: doc.id,
+			routeName : encodeURI(title.toLowerCase()),
+			id        : doc.id,
 			title,
 			items
 		};
@@ -71,18 +71,18 @@ export const getCurrentUser = () => {
 
 /* added SHOP_ITEMS from shop.data.js to firebase, ***ran only once*** to add the data that we need */
 
-// export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
-//     const collectionRef = firestore.collection(collectionKey);
+// export const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+// 	const collectionRef = firestore.collection(collectionKey);
+// 	const batch = firestore.batch();
+// 	console.log(objectsToAdd);
 
-//     const batch = firestore.batch();
+// 	objectsToAdd.forEach((obj) => {
+// 		const newDocRef = collectionRef.doc();
+// 		console.log(newDocRef);
+// 	});
 
-//     objectsToAdd.forEach(obj => {
-//         const newDocRef = collectionRef.doc();
-//         batch.set(newDocRef, obj);
-//     });
-
-//     return await batch.commit();
-// }
+// 	// return await batch.commit();
+// };
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
