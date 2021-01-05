@@ -30,7 +30,7 @@ const StripeCheckoutButton = ({ price }) => {
 	return (
 		<StripeCheckout
 			label="Pay Now"
-			name="Daniel Gaishuber Ltd."
+			name="Daniel Gaishuber Software Engineer Ltd."
 			billingAddress
 			shippingAddress
 			image="https://svgshare.com/i/CUz.svg"
