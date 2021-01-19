@@ -45,3 +45,5 @@ app.post('/payment', (req, res) => {
 		}
 	});
 });
+
+//TODO move post method to controller
