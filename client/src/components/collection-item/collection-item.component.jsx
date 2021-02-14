@@ -1,5 +1,6 @@
 import React from "react";
 
+//redux
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
 
@@ -11,8 +12,13 @@ import { addItem } from "../../redux/cart/cart.actions";
 //with styled components
 import { CollectionItemContainer, AddButton, BackgroundImage, CollectionFooterContainer, NameContainer, PriceContainer } from "./collection-item.styles";
 
-const CollectionItem = ({ item, addItem}) => {
+const CollectionItem = ({ item, addItem, onAddItem}) => {
     const { name, price, imageUrl } = item;
+
+    onAddItem = () => {
+        alert("Added to cart");
+        addItem(item);
+    }
     
     return(
     <CollectionItemContainer>
@@ -21,7 +27,7 @@ const CollectionItem = ({ item, addItem}) => {
             <NameContainer>{ name }</NameContainer>
             <PriceContainer>$ { price }</PriceContainer>
         </CollectionFooterContainer> 
-        <AddButton onClick={() => addItem(item)} inverted >ADD TO CART</AddButton>   
+        <AddButton onClick={() => onAddItem()} inverted >ADD TO CART</AddButton>   
     </CollectionItemContainer>
 )}
 
