@@ -1,8 +1,7 @@
 import styled, { css } from "styled-components";
 
-
 const buttonStyles = css`
-    background-color:black;
+    background-color: black;
     color: white;
     border: none;
 
@@ -10,6 +9,7 @@ const buttonStyles = css`
         background-color: white;
         color: black;
         border: 1px solid black;
+        transition: 0.2s;
     }
 `;
 
@@ -18,10 +18,11 @@ const invertedButtonStyles = css`
     color: black;
     border: 1px solid black;
 
-    &:hover{
-        background-color:#FF611C;
+    &:hover {
+        background-color: #ff611c;
         color: white;
         border: none;
+        transition: 0.2s;
     }
 `;
 
@@ -31,23 +32,23 @@ const googleSignInStyles = css`
     border: none;
 
     &:hover {
-      background-color: #357ae8;
-      border: none;
+        background-color: #357ae8;
+        border: none;
+        transition: 0.2s;
     }
 `;
 
-const getButtonStyles = props => {
+const getButtonStyles = (props) => {
     if (props.isGoogleSignIn) {
         return googleSignInStyles;
-    } 
+    }
 
     return props.inverted ? invertedButtonStyles : buttonStyles;
 };
 
-
 export const CustomButtonContainer = styled.button`
     min-width: 165px;
-    outline:none;
+    outline: none;
     width: auto;
     height: 50px;
     letter-spacing: 0.5px;
@@ -55,7 +56,7 @@ export const CustomButtonContainer = styled.button`
     padding: 0 35px 0 35px;
     font-size: 15px;
     text-transform: uppercase;
-    font-family: 'Open Sans Condensed';
+    font-family: "Open Sans Condensed";
     font-weight: bolder;
     cursor: pointer;
     display: flex;
@@ -63,5 +64,3 @@ export const CustomButtonContainer = styled.button`
 
     ${getButtonStyles};
 `;
-
-

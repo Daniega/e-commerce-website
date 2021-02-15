@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -6,7 +6,7 @@ body {
 	font-family: 'Open Sans Condensed', sans-serif;
 	padding: 20px 60px;
 	font-weight: bolder;
-	background: linear-gradient(to bottom right, rgb(198, 234, 255), rgb(255, 255, 255));
+	background: linear-gradient(to bottom right, rgb(196, 255, 236), rgb(255, 255, 255));
     background-repeat: no-repeat;
 
     @keyframes gradient {

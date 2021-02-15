@@ -29,8 +29,11 @@ export const ContactLink = styled.a`
 export const ContactImage = styled.img`
     margin: auto;
     display: block;
-
     height: 40px;
+    &:hover {
+        transform: scale(1.1);
+        transition: 0.2s;
+    }
 `;
 
 // export const ContactDetails = styled.span``;
