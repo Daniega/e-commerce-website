@@ -1,22 +1,36 @@
-import styled /* { css } */ from 'styled-components';
+import styled /* { css } */ from "styled-components";
 
-export const ContactContainer = styled.div`
-	display: flex;
-	flex-wrap: wrap;
+export const ContactPageContainer = styled.div`
+    width: 100%;
+    height: 100vh;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
 `;
 
-// export const ContactDetails = styled.span``;
+export const ContactContainer = styled.div`
+    margin: 10px 20px;
+    padding: auto 10px;
+`;
 
-export const ContactName = styled.span``;
-
-export const ContactPart = styled.div`
-	height: auto;
-	width: 200px;
+export const ContactName = styled.h3`
+    text-align: center;
 `;
 
 export const ContactLink = styled.a`
-	margin: 5px 30px auto 30px;
-	cursor: pointer;
+    cursor: pointer;
 `;
 
-export const ContactEmail = styled.a`margin-left: 15px;`;
+export const ContactImage = styled.img`
+    margin: auto;
+    display: block;
+
+    height: 40px;
+`;
+
+// export const ContactDetails = styled.span``;
