@@ -1,19 +1,21 @@
-import React from "react";
+import React from 'react';
 
 //without styled components
 // import "./cart-item.styles.scss";
 
 //with styled components
-import { CartItemContainer, CartItemImage, ItemDetailsContainer } from "./cart-item.styles";
+import { CartItemContainer, CartItemImage, ItemDetailsContainer } from './cart-item.styles';
 
-const CartItem = ({ item: {imageUrl, price, name, quantity} }) => (
-    <CartItemContainer>
-        <CartItemImage src={imageUrl} alt="item" />
-        <ItemDetailsContainer>
-            <span className="name">{name}</span>
-            <span className="price">{quantity} x ${price}</span>
-        </ItemDetailsContainer>
-    </CartItemContainer>
-)
+const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
+	<CartItemContainer>
+		<CartItemImage src={imageUrl} alt='item' />
+		<ItemDetailsContainer>
+			<span className='name'>{name}</span>
+			<span className='price'>
+				{quantity} x ${price}
+			</span>
+		</ItemDetailsContainer>
+	</CartItemContainer>
+);
 
-export default CartItem;
+export default React.memo(CartItem);

@@ -1,18 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-// //redux thunk - Thunks are the recommended middleware for basic Redux side effects logic, including complex synchronous logic that needs access to the store, and simple async logic like AJAX requests.
-// import thunk from "redux-thunk";
+
 //redux persist for managing local storage or session storage. to save cart state
 import { persistStore } from 'redux-persist';
 
-//using redux-saga
+//using redux-saga for asynchornous api calls in our redux
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './root-saga';
 import rootReducer from './root-reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [ sagaMiddleware ];
+const middlewares = [sagaMiddleware];
 
 if (process.env.NODE_ENV === 'development') {
 	middlewares.push(logger);
