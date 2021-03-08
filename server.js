@@ -20,7 +20,7 @@ app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, 'client/build')));
-	app.get('/serviceWorker.js', (req, res) => {
+	app.get('/service-worker.js', (req, res) => {
 		res.sendFile(path.resolve(__dirname, '..', 'build', 'serviceWorker.js'));
 	});
 	app.get('*', function (req, res) {
@@ -35,7 +35,7 @@ app.listen(port, (error) => {
 	console.log('Server running on port: ' + port);
 });
 
-app.get('/serviceWorker.js', (req, res) => {
+app.get('/service-worker.js', (req, res) => {
 	res.sendFile(path.resolve(__dirname, '..', 'build', 'serviceWorker.js'));
 });
 
